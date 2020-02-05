@@ -1,0 +1,90 @@
+apiVersion: maistra.io/v1
+kind: ServiceMeshControlPlane
+metadata:
+  name: production-install
+  namespace: istio-system
+spec:
+  istio:
+    global:
+      mtls:
+        enabled: true
+      disablePolicyChecks: false
+      proxy:
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+            memory: 128Mi
+    gateways:
+      istio-egressgateway:
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+            memory: 128Mi
+        autoscaleEnabled: false
+      istio-ingressgateway:
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+            memory: 128Mi
+        autoscaleEnabled: false
+    mixer:
+      policy:
+        autoscaleEnabled: false
+        resources:
+          requests:
+            cpu: 100m
+            memory: 1G
+          limits:
+            cpu: 500m
+            memory: 4G
+      telemetry:
+        autoscaleEnabled: false
+        resources:
+          requests:
+            cpu: 100m
+            memory: 1G
+          limits:
+            cpu: 500m
+            memory: 4G
+    pilot:
+      autoscaleEnabled: false
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+        limits:
+          cpu: 500m
+          memory: 128Mi
+      traceSampling: 100
+    kiali:
+      enabled: true
+      dashboard:
+        viewOnlyMode: false
+    grafana:
+      enabled: true
+    tracing:
+      enabled: true
+      jaeger:
+        template: production-elasticsearch
+        elasticsearch:
+          nodeCount: 3
+          storage:
+            storageClassName: "storagecluster-ceph-rbd"
+            size: "50Gi"
+          redundancyPolicy: "SingleRedundancy"
+          resources:
+            requests:
+              cpu: "1"
+              memory: "16Gi"
+            limits:
+              cpu: "1"
+              memory: "16Gi"
