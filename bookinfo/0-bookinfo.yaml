@@ -13,6 +13,20 @@
 #   limitations under the License.
 
 ##################################################################################################
+# This file defines the services, service accounts, and deployments for the Bookinfo sample.
+#
+# To apply all 4 Bookinfo services, their corresponding service accounts, and deployments:
+#
+#   kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
+#
+# Alternatively, you can deploy any resource separately:
+#
+#   kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml -l service=reviews # reviews Service
+#   kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml -l account=reviews # reviews ServiceAccount
+#   kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml -l app=reviews,version=v3 # reviews-v3 Deployment
+##################################################################################################
+
+##################################################################################################
 # Details service
 ##################################################################################################
 apiVersion: v1
@@ -29,15 +43,27 @@ spec:
   selector:
     app: details
 ---
-apiVersion: extensions/v1beta1
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: bookinfo-details
+  labels:
+    account: details
+---
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: details-v1
   labels:
     app: details
     version: v1
+    app.kubernetes.io/part-of: details
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: details
+      version: v1
   template:
     metadata:
       annotations:
@@ -46,9 +72,10 @@ spec:
         app: details
         version: v1
     spec:
+      serviceAccountName: bookinfo-details
       containers:
       - name: details
-        image: docker.io/maistra/examples-bookinfo-details-v1:0.12.0
+        image: maistra/examples-bookinfo-details-v1:1.1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
@@ -70,15 +97,27 @@ spec:
   selector:
     app: ratings
 ---
-apiVersion: extensions/v1beta1
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: bookinfo-ratings
+  labels:
+    account: ratings
+---
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ratings-v1
   labels:
     app: ratings
     version: v1
+    app.kubernetes.io/part-of: ratings
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: ratings
+      version: v1
   template:
     metadata:
       annotations:
@@ -87,17 +126,13 @@ spec:
         app: ratings
         version: v1
     spec:
+      serviceAccountName: bookinfo-ratings
       containers:
       - name: ratings
-        image: docker.io/maistra/examples-bookinfo-ratings-v1:0.12.0
+        image: maistra/examples-bookinfo-ratings-v1:1.1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: bookinfo-reviews
 ---
 ##################################################################################################
 # Reviews service
@@ -116,15 +151,27 @@ spec:
   selector:
     app: reviews
 ---
-apiVersion: extensions/v1beta1
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: bookinfo-reviews
+  labels:
+    account: reviews
+---
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: reviews-v1
   labels:
     app: reviews
     version: v1
+    app.kubernetes.io/part-of: reviews
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: reviews
+      version: v1
   template:
     metadata:
       annotations:
@@ -133,22 +180,28 @@ spec:
         app: reviews
         version: v1
     spec:
+      serviceAccountName: bookinfo-reviews
       containers:
       - name: reviews
-        image: docker.io/maistra/examples-bookinfo-reviews-v1:0.12.0
+        image: maistra/examples-bookinfo-reviews-v1:1.1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: reviews-v2
   labels:
     app: reviews
     version: v2
+    app.kubernetes.io/part-of: reviews
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: reviews
+      version: v2
   template:
     metadata:
       annotations:
@@ -160,20 +213,25 @@ spec:
       serviceAccountName: bookinfo-reviews
       containers:
       - name: reviews
-        image: docker.io/maistra/examples-bookinfo-reviews-v2:0.12.0
+        image: maistra/examples-bookinfo-reviews-v2:1.1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: reviews-v3
   labels:
     app: reviews
     version: v3
+    app.kubernetes.io/part-of: reviews
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: reviews
+      version: v3
   template:
     metadata:
       annotations:
@@ -185,15 +243,10 @@ spec:
       serviceAccountName: bookinfo-reviews
       containers:
       - name: reviews
-        image: docker.io/maistra/examples-bookinfo-reviews-v3:0.12.0
+        image: maistra/examples-bookinfo-reviews-v3:1.1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: bookinfo-productpage
 ---
 ##################################################################################################
 # Productpage services
@@ -212,15 +265,27 @@ spec:
   selector:
     app: productpage
 ---
-apiVersion: extensions/v1beta1
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: bookinfo-productpage
+  labels:
+    account: productpage
+---
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: productpage-v1
   labels:
     app: productpage
     version: v1
+    app.kubernetes.io/part-of: products
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: productpage
+      version: v1
   template:
     metadata:
       annotations:
@@ -232,7 +297,7 @@ spec:
       serviceAccountName: bookinfo-productpage
       containers:
       - name: productpage
-        image: docker.io/maistra/examples-bookinfo-productpage-v1:0.12.0
+        image: maistra/examples-bookinfo-productpage-v1:1.1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
