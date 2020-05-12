@@ -19,7 +19,7 @@ Demo for the Red Hat Service Mesh bookinfo demo, taken from https://access.redha
         - **NOTE:** This requires either being run as a cluster admin user, or by a user that has `edit` access to the `istio-system` project
 - The [bookinfo](bookinfo) directory has a bunch of `demo-` scripts that you can run to set up different scenarios
     - [`demo-0-virtual-service-all-v1.yaml`](bookinfo/demo-0-virtual-service-all-v1.yaml) sets all requests to `reviews-v1`
-    - [`demo-1-virtual-service-reviews-v1-partial.yaml`](bookinfo/demo-1-virtual-service-reviews-v1-partial.yaml) sets 90% of traffic to `reviews-v1` & 10% of traffic to `reviews-v2`
+    - [`demo-1-virtual-service-reviews-v2-partial.yaml`](bookinfo/demo-1-virtual-service-reviews-v2-partial.yaml) sets 90% of traffic to `reviews-v1` & 10% of traffic to `reviews-v2`
     - [`demo-2-virtual-service-reviews-v2-full.yaml`](bookinfo/demo-2-virtual-service-reviews-v2-full.yaml) sets all requests to `reviews-v2`
     - [`demo-3-virtual-service-reviews-jason-v2-v3.yaml`](bookinfo/demo-3-virtual-service-reviews-jason-v2-v3.yaml) sets users who log in as `jason` to `reviews-v3` and everyone else to `reviews-v2`
     - [`demo-4-virtual-service-reviews-jason-v2-v3-delay.yaml`](bookinfo/demo-4-virtual-service-reviews-jason-v2-v3-delay.yaml) sets users who log in as `jason` to `reviews-v3`, but with a 7 second delay. Everyone else goes to `reviews-v2` with no delay
