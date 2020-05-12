@@ -12,7 +12,7 @@ Demo for the Red Hat Service Mesh bookinfo demo, taken from https://access.redha
     - Jaeger should be available at https://jaeger-istio-system.apps.##CLUSTER_SUFFIX##
 
 ## Running a demo
-- The [`reset-virtualservices.sh`](bookinfo/virtualservices.sh) script will reset all `VirtualService`s to the default state, so requests to the `reviews` service will flow to each version, as set up by the installation
+- The [`reset-virtualservices.sh`](bookinfo/reset-virtualservices.sh) script will reset all `VirtualService`s to the default state, so requests to the `reviews` service will flow to each version, as set up by the installation
     - Re-run this each time you make a change before making a new change to revert back to a clean state
 - The [`reset-ratelimits.sh`](bookinfo/reset-ratelimits.sh) script will reset the rate limits applied by [`demo-6-mixer-rule-productpage-ratelimit.yaml`](bookinfo/demo-6-mixer-rule-productpage-ratelimit.yaml)
     - Re-run this whenever you apply [`demo-6-mixer-rule-productpage-ratelimit.yaml`](bookinfo/demo-6-mixer-rule-productpage-ratelimit.yaml) to reset back to a clean state
