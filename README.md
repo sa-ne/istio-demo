@@ -1,4 +1,4 @@
-Demo for the Red Hat Service Mesh bookinfo demo, taken from https://access.redhat.com/documentation/en-us/openshift_container_platform/4.4/html-single/service_mesh/index#ossm-bookinfo-tutorial
+Demo for the Red Hat Service Mesh bookinfo demo, taken from https://access.redhat.com/documentation/en-us/openshift_container_platform/4.5/html-single/service_mesh/index#ossm-tutorial-bookinfo-overview_deploying-applications-ossm-v1x
 
 ## To Install
 1. Log in as cluster admin
