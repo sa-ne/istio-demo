@@ -200,6 +200,8 @@ metadata:
     version: v2
     app.kubernetes.io/part-of: reviews
     app.openshift.io/runtime: openliberty
+  annotations:
+    app.openshift.io/connects-to: ratings-v1
 spec:
   replicas: 1
   selector:
@@ -231,6 +233,8 @@ metadata:
     version: v3
     app.kubernetes.io/part-of: reviews
     app.openshift.io/runtime: openliberty
+  annotations:
+    app.openshift.io/connects-to: ratings-v1
 spec:
   replicas: 1
   selector:
@@ -286,6 +290,8 @@ metadata:
     version: v1
     app.kubernetes.io/part-of: products
     app.openshift.io/runtime: python
+  annotations:
+    app.openshift.io/connects-to: "details-v1,reviews-v1,reviews-v2,reviews-v3"
 spec:
   replicas: 1
   selector:
