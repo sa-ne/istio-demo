@@ -4,7 +4,7 @@ Demo for the Red Hat Service Mesh bookinfo demo, taken from https://access.redha
 1. Log in as cluster admin
 1. Apply 1-5 in the [istio-install](istio-install) directory via `oc apply -f`
     - If running on RHPDS or in AWS, also run [`6-deploy-smcp-aws.yaml`](istio-install/6-deploy-smcp-aws.yaml)
-1. Give the "normal" user access to the `istio-system` project (i.e. `oc adm policy add-role-to-user view user1 -n istio-system`)
+1. Give the "normal" user access to the `istio-system` project (i.e. `oc adm policy add-role-to-user edit user1 -n istio-system`)
 1. Switch to a "normal" user (i.e. user1 in an RHPDS environment)
 1. Create the `bookinfo` project (`oc new-project bookinfo`)
 1. Switch back to the cluster admin user
