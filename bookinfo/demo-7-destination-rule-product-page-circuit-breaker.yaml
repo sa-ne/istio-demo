@@ -1,3 +1,4 @@
+# Places some circuit breaking logic on productpage
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:

@@ -1,3 +1,5 @@
+# Sends users who log in as "jason" to reviews-v3, but with a 3 second delay.
+# Everyone else goes to reviews-v2 with no delay
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:

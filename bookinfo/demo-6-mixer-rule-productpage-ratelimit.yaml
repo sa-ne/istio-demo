@@ -1,3 +1,4 @@
+# Imposes some rate limits on the productpage application
 apiVersion: config.istio.io/v1alpha2
 kind: handler
 metadata:

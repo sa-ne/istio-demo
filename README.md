@@ -28,7 +28,7 @@ Demo for the Red Hat Service Mesh bookinfo demo, taken from https://access.redha
     - [`demo-1-virtual-service-reviews-v2-partial.yaml`](bookinfo/demo-1-virtual-service-reviews-v2-partial.yaml) sets 90% of traffic to `reviews-v1` & 10% of traffic to `reviews-v2`
     - [`demo-2-virtual-service-reviews-v2-full.yaml`](bookinfo/demo-2-virtual-service-reviews-v2-full.yaml) sets all requests to `reviews-v2`
     - [`demo-3-virtual-service-reviews-jason-v2-v3.yaml`](bookinfo/demo-3-virtual-service-reviews-jason-v2-v3.yaml) sets users who log in as `jason` to `reviews-v3` and everyone else to `reviews-v2`
-    - [`demo-4-virtual-service-reviews-jason-v2-v3-delay.yaml`](bookinfo/demo-4-virtual-service-reviews-jason-v2-v3-delay.yaml) sets users who log in as `jason` to `reviews-v3`, but with a 7 second delay. Everyone else goes to `reviews-v2` with no delay
+    - [`demo-4-virtual-service-reviews-jason-v2-v3-delay.yaml`](bookinfo/demo-4-virtual-service-reviews-jason-v2-v3-delay.yaml) sets users who log in as `jason` to `reviews-v3`, but with a 3 second delay. Everyone else goes to `reviews-v2` with no delay
     - [`demo-5-virtual-service-reviews-jason-v2-v3-error.yaml`](bookinfo/demo-5-virtual-service-reviews-jason-v2-v3-error.yaml) sets users who log in as `jason` to receive a `500` error. All other users are routed 50% to `reviews-v2` & 50% to `reviews-v3`
     - [`demo-6-mixer-rule-productpage-ratelimit.yaml`](bookinfo/demo-6-mixer-rule-productpage-ratelimit.yaml) imposes some rate limits on the `productpage`
     - [`demo-7-destination-rule-product-page-circuit-breaker.yaml`](bookinfo/demo-7-destination-rule-product-page-circuit-breaker.yaml) places some circuit breaker logic on `productpage`

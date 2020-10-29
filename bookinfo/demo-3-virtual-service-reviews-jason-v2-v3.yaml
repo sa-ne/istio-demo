@@ -1,3 +1,4 @@
+# Sends users who log in as "jason" to reviews-v3 and everyone else to reviews-v2
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
