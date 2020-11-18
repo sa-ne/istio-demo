@@ -5,7 +5,7 @@ metadata:
   name: elasticsearch-operator-subscription
   namespace: openshift-operators
 spec:
-  channel: "4.4"
+  channel: "4.5"
   name: elasticsearch-operator
   source: redhat-operators
   sourceNamespace: openshift-marketplace
